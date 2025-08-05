@@ -5,7 +5,7 @@ const cors=require('cors')
 const logger=require('morgan')
 dotenv.config()
 const app=express()
-
+const testJwtRouter=require('./controllers/test-jwt')
 mongoose.connect(process.env.MONGODB_URI)
 
 mongoose.connection.on('connected',()=>{
@@ -15,7 +15,7 @@ mongoose.connection.on('connected',()=>{
 app.use(cors())
 app.use(express.json())
 app.use(logger('dev'))
-
+app.use('/test-jwt', testJwtRouter);
 
 app.listen(3000,()=>{
     console.log('app is working on port 3000')
